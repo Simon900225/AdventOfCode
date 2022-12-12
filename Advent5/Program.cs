@@ -44,17 +44,39 @@ for (int i = stackLines.Length - 4; i >= 0; i--)
     }
 }
 
+//CrateMover 9000
+//foreach(var instruction in instructionsString.Split(Environment.NewLine))
+//{
+//    var intructionSplit = instruction.Split(' ');
+//    var amount = int.Parse(intructionSplit[1]);
+//    var from = int.Parse(intructionSplit[3]) - 1;
+//    var to = int.Parse(intructionSplit[5]) - 1;
 
-foreach(var instruction in instructionsString.Split(Environment.NewLine))
+//    for (int i = 0; i < amount; i++)
+//    {
+//        var value = stacks[from].Pop();
+//        stacks[to].Push(value);
+//    }
+//}
+
+//CrateMover 9001
+foreach (var instruction in instructionsString.Split(Environment.NewLine))
 {
     var intructionSplit = instruction.Split(' ');
     var amount = int.Parse(intructionSplit[1]);
     var from = int.Parse(intructionSplit[3]) - 1;
     var to = int.Parse(intructionSplit[5]) - 1;
 
+    var valuesToAdd = new List<char>();
     for (int i = 0; i < amount; i++)
     {
         var value = stacks[from].Pop();
+        valuesToAdd.Add(value);
+    }
+
+    valuesToAdd.Reverse();
+    foreach (var value in valuesToAdd)
+    {
         stacks[to].Push(value);
     }
 }
